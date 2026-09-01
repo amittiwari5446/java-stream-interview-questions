@@ -35,6 +35,7 @@ public class StreamProblemCustomClass {
                 ));
         System.out.println("Salary By Department: "+salaryByDepartment);
 
+        //average salary by department
         Map<String, Double> averageByDepartment=employees.stream()
                 .collect(Collectors.groupingBy(
                         e->e.getDepartment(),
@@ -122,7 +123,7 @@ public class StreamProblemCustomClass {
                 .findFirst();
         System.out.println("Second Highest salary: "+secondHighestSalary);
 
-        //top 3 highest paid salary
+        //top 3 highest paid salary (and we want whole employee details)
         List<Employee> topThreeHighestSalary=employees.stream()
                 .sorted(
                         Comparator.comparingDouble(Employee::getSalary).reversed()
@@ -130,6 +131,9 @@ public class StreamProblemCustomClass {
                 .limit(3)
                 .collect(Collectors.toList());
         System.out.println("Top 3 highest salary: "+topThreeHighestSalary);
+
+        //Employee above company average salary
+
 
 
     }
