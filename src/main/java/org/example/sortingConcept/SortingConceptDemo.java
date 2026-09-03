@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SortingConceptDemo {
     public static void main(String[] args){
@@ -95,6 +96,31 @@ public class SortingConceptDemo {
                 .sorted(Comparator.comparing(Employee::name, Comparator.nullsLast(String::compareTo)))
                 .toList();
         System.out.println("NullsLst for objectsL: "+nullsLast2);
+        System.out.println();
+        System.out.println();
+
+        //case insensitive sorting
+        List<String> caseInsensitiveSorting = names.stream()
+                .sorted(Comparator.comparing(String::toLowerCase))
+                .toList();
+        System.out.println("Case Insensitive Sorting: "+caseInsensitiveSorting);
+
+        //sort by length of name then alphabetically
+        List<String> lenThenAlpha = names.stream()
+                .sorted(Comparator.comparing(String::length)
+                        .thenComparing(Comparator.naturalOrder()))
+                .collect(Collectors.toList());
+        System.out.println("sort by length then alphabetically: "+lenThenAlpha);
+
+        //sorting + filtering + mapping
+        //names of IT peoples with their salary in desc
+        List<String> sfm = employees.stream()
+                .filter(emp->emp.department.equals("IT"))
+                .sorted(Comparator.comparingDouble(Employee::salary).reversed())
+                .map(Employee::name)
+                .collect(Collectors.toList());
+        System.out.println("name of IT peoples with their salary in desc: "+sfm);
+
 
 
 
