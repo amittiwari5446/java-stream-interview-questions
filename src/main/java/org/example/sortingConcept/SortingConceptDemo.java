@@ -116,12 +116,16 @@ public class SortingConceptDemo {
         //names of IT peoples with their salary in desc
         List<String> sfm = employees.stream()
                 .filter(emp->emp.department.equals("IT"))
-                .sorted(Comparator.comparingDouble(Employee::salary).reversed())
+                .sorted(Comparator.comparingDouble(Employee::salary).reversed())    //preffered for reversing the objects
                 .map(Employee::name)
                 .collect(Collectors.toList());
         System.out.println("name of IT peoples with their salary in desc: "+sfm);
 
-
+        // sorted() is stateful & interferes with parallel performance
+        List<Employee> sortedParallel = employees.parallelStream()
+                .sorted(Comparator.comparingDouble(Employee::salary))
+                .toList();
+        System.out.println("Sorting Parallel streams: "+sortedParallel);
 
 
     }
