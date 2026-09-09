@@ -101,6 +101,29 @@ public class MappingConceptsDemo {
         System.out.println("Flat map and toSet: "+ skills3);
 
 
+        //flatMapToInt
+        List<List<Integer>> nestedNumbers = List.of(
+                List.of(1, 2, 3),
+                List.of(4, 5),
+                List.of(6, 7, 8, 9)
+        );
+
+        int flatSum = nestedNumbers.stream()
+                .flatMapToInt(list->list.stream().mapToInt(Integer::intValue))
+                .sum();
+        System.out.println("flat sum: "+flatSum);
+
+
+        //advance mapping
+        record EmployeeDTO(String name, String dept) {}
+
+        List<EmployeeDTO> customDTO = employees.stream()
+                .map(emp->new EmployeeDTO(emp.name,emp.department))
+                .toList();
+        System.out.println("Custom DTO: "+customDTO);
+
+        
+
 
 
 
