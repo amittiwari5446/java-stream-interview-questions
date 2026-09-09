@@ -122,6 +122,11 @@ public class MappingConceptsDemo {
                 .toList();
         System.out.println("Custom DTO: "+customDTO);
 
+        //conditional mapping
+        List<String> labels = employees.stream()
+                .map(e->e.salary>100000 ? "Senior":"Junior")
+                .toList();
+        System.out.println("Conditional mapping: "+labels);
         
 
 
