@@ -80,6 +80,6 @@ public class PartitionByDemo {
                 ));
         System.out.println("partition by 'IT' then group by gender: "+partitionThenGroupingBy);
 
-        
+
     }
 }
