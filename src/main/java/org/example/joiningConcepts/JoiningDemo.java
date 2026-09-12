@@ -3,6 +3,7 @@ package org.example.joiningConcepts;
 import org.example.StreamOverCustomClass.Employee;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class JoiningDemo {
@@ -53,7 +54,34 @@ public class JoiningDemo {
         System.out.println("Joining Objects2: "+joiningObject2);
 
         //joining with Filtering + Mapping
-        
+        String itName = employees.stream()
+                .filter(emp->emp.department.equals("IT"))
+                .map(Employee::name)
+                .collect(Collectors.joining(", ","IT Team: ","."));
+        System.out.println("IT Names: "+itName);
+
+        //joining numbers
+        List<Integer> list2=List.of(12,54,23,78,43,90,12,23,56,61);
+        String joinNumbers = list2.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(" - "));
+        System.out.println("Joining Numbers: "+joinNumbers);
+
+        String csv = employees.stream()
+                .map(e -> e.name() + "," + e.department() + "," + e.salary())
+                .collect(Collectors.joining("\n", "Name,Department,Salary\n", ""));
+        System.out.println("CSV file: "+csv);
+
+        //joining and groupingBy
+        Map<String,String> grouping=employees.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::department,
+                        Collectors.mapping(
+                                Employee::name,
+                                Collectors.joining(", ")
+                        )
+                ));
+        System.out.println("Joining and GroupingBy: "+grouping);
 
     }
 }
