@@ -54,5 +54,10 @@ public class ShortCircuitOperationsDemo {
         boolean startsWithC = names.stream()
                 .anyMatch(name -> name.startsWith("C"));
 
+        //allMatch
+        boolean allHighSalary = employees.stream()
+                .allMatch(e -> e.salary() > 50000);
+        System.out.println("allMatch: "+allHighSalary);
+
     }
 }
