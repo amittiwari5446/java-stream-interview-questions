@@ -59,5 +59,24 @@ public class ShortCircuitOperationsDemo {
                 .allMatch(e -> e.salary() > 50000);
         System.out.println("allMatch: "+allHighSalary);
 
+        boolean allIT=employees.stream()
+                .allMatch(emp->emp.department.equals("IT"));
+        System.out.println("all IT?: "+allIT);
+
+        boolean allNameLength = employees.stream()
+                .allMatch(emp->emp.name.length()>2);
+        System.out.println("all names length>2? : "+allNameLength);
+
+        //nonMatch()
+        boolean noOneInSales = employees.stream()
+                .noneMatch(emp->emp.department.equals("Sales"));
+        System.out.println("No one in sales: "+noOneInSales);
+
+        boolean noVeryHighSalary = employees.stream()
+                .noneMatch(emp->emp.salary>200000);
+        System.out.println("no very high salary: "+noVeryHighSalary);
+
+
+
     }
 }
