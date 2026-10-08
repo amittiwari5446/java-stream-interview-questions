@@ -37,6 +37,8 @@ public class MappingConceptsDemo {
                 .map(emp->new Employee(emp.name,emp.department,emp.salary*1.1))
                 .toList();
         System.out.println("incremented salary: "+ updatedSalary);
+        //employees.forEach(emp -> emp.salary *= 1.1); <this is correct>
+        //.map(emp->emp.salary=emp.salary*1.1) <this will convert List<Employee> to List<Double>>
 
 
         //3. primittive specialized map

@@ -71,6 +71,7 @@ public class SortingConceptDemo {
         System.out.println("Sort first by department then salary: "+multiSort1);
 
         //department -> age ascending -> salary descending
+
         List<Employee> multiSort2=employees.stream()
                 .sorted(Comparator.comparing(Employee::department)
                         .thenComparing(Employee::age)
