@@ -1,6 +1,7 @@
 package org.example.StreamOverCustomClass;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,22 @@ public class StreamProblemsString {
                 .map(w->w.toUpperCase())
                 .collect(Collectors.toList());
         System.out.println("upper case: "+convertToUppercase);
+
+        List<String> str1=words.stream()
+                .sorted()
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println("str1: "+str1);
+
+        List<String> str2=words.stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
+        System.out.println("str2: "+str2);
+
+        List<String> str3=words.stream()
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+        System.out.println("str3: "+str3);
 
     }
 }
